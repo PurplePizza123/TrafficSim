@@ -11,15 +11,15 @@ public class Vehicle {
     private double engineForce;
     private double brakeForce;
 
-    public Vehicle(double mass) {
+    public Vehicle(double mass, double engineForce, double brakeForce, double dragCoefficient, double maximumBrakingForce) {
         this.mass = mass;
 
         position = 0;
         velocity = 0;
         acceleration = 0;
 
-        engineForce = 0;
-        brakeForce = 0;
+        this.engineForce = engineForce;
+        this.brakeForce = brakeForce;
     }
 
     public double getMass() {
@@ -65,4 +65,6 @@ public class Vehicle {
     public void updatePosition(double deltaTime) {
         position += velocity * deltaTime;
     }
+
+    //TODO: Add throttle and brake inputs potentially?
 }
