@@ -1,29 +1,42 @@
 package main.java.traffic;
 
+import com.sun.jdi.CharType;
+import org.w3c.dom.css.CSSStyleSheet;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static main.java.traffic.CarType.CIVIC;
 import static main.java.traffic.CarType.F150;
 
 public class Simulation {
-    private Vehicle vehicle;
 
-    public Simulation(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    List<Vehicle> vehicles;
+    CarType type;
 
-        Vehicle car1 = new Vehicle(CIVIC);
-        Vehicle car2 = new Vehicle(CIVIC);
-        Vehicle car3 = new Vehicle(F150);
+    public Simulation() {
+        vehicles = new ArrayList<>();
+        type = CIVIC;
     }
 
     public void update(double deltaTime) {
-        double acceleration = Physics.calculateAcceleration(vehicle);
+        for (Vehicle v : vehicles) {
+            double acceleration = Physics.calculateAcceleration(v,type);
 
-        vehicle.setAcceleration(acceleration);
+            v.setAcceleration(acceleration);
 
-        vehicle.updateVelocity(deltaTime);
-        vehicle.updatePosition(deltaTime);
+            v.updateVelocity(deltaTime);
+            v.updatePosition(deltaTime);
+        }
+    }
+
+    public void createVehicles() {
+        vehicles.add(new Vehicle(CIVIC));
+        vehicles.add(new Vehicle(CIVIC));
+        vehicles.add(new Vehicle(F150));
     }
 
     public Vehicle getVehicle() {
-        return vehicle;
+        return null;
     }
 }

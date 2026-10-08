@@ -5,9 +5,9 @@ public class Physics {
         return vehicle.getEngineForce() - vehicle.getBrakeForce();
     }
 
-    public static double calculateAcceleration(Vehicle vehicle) {
+    public static double calculateAcceleration(Vehicle vehicle, CarType type) {
         double netForce = calculateNetForce(vehicle);
 
-        return netForce / vehicle.getMass();
+        return netForce / type.getMass();
     }
 }
